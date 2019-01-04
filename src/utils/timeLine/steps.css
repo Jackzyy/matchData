@@ -1,0 +1,258 @@
+/** 
+ * steps.js是基于原生JavaScript的组件，可用于展示步骤条、时间轴等。
+ * time：2018-09-22
+ * version：1.0
+ * by 樊小书生: http://www.fxss5201.cn/
+ * github: https://github.com/fxss5201/steps
+ */
+
+.step-description div{
+    display: flex;
+    align-items: center;
+    padding: 3px 0;
+}
+.step-description div img{
+    width:0.3rem;
+    height:0.3rem;
+    padding: 0 5px;
+}
+.steps-column-start .step-description div{
+    justify-content: flex-end;
+}
+
+
+
+
+.steps {
+    padding: 10px;
+    box-sizing: border-box;
+}
+.steps-row {
+    display: flex;
+    flex-wrap: nowrap
+}
+.steps-column {
+    flex-basis: 50%;
+    flex-flow: column;
+    display: inline-flex;
+}
+.steps-horizontal .steps-row-start {
+    align-items: flex-end;
+}
+.steps-column-center {
+    flex-basis: auto!important;
+    flex-shrink: 0;
+    flex-grow: 0;
+}
+.steps-horizontal {
+    white-space: nowrap;
+}
+.steps-vertical {
+    display: flex;
+    height: 100%;
+}
+.steps-center {
+    text-align: center;
+}
+.step {
+    position: relative;
+    flex-shrink: 1;
+}
+.steps-vertical .step {
+    display: flex;
+}
+.step-head {
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.steps-vertical .step-head {
+    flex-grow: 0;
+}
+.step-line {
+    position: absolute;
+    height: 2px;
+    top: 11px;
+    left: 0;
+    right: 0;
+    border-color: inherit;
+    background-color: #A51023;
+}
+.steps-vertical .step-line {
+    width: 4px;
+    top: 10px;
+    bottom: 0;
+    left: 50%;
+    height: 100%;
+    transform: translateX(-50%)
+}
+.steps-center .step-line {
+    left: 50%;
+    right: -50%;
+}
+.step-icon {
+    position: relative;
+    z-index: 1;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    /* width: 21px; */
+    min-width: 21px;
+    height: 21px;
+    font-size: 12px;
+    box-sizing: border-box;
+    background: #A51023;
+    transition: .15s ease-out;
+    border-radius: 21px;
+    border-color: #A51023;
+    color: #fff;
+    padding: 5px;
+}
+.step-icon-number {
+    display: inline-block;
+    user-select: none;
+    text-align: center;
+    font-weight: 700;
+    line-height: 1;
+    color: inherit;
+}
+.step-icon-bullets {
+    display: inline-block;
+    user-select: none;
+    width: 14px;
+    height: 14px;
+    background-color: currentColor;
+    border-radius: 50%;
+}
+.step-body {
+    white-space: normal;
+    text-align: left;
+}
+.steps-vertical .step-body {
+    flex-grow: 1;
+}
+.steps-center .step-body {
+    box-sizing: border-box;
+    padding: 0 10px;
+    text-align: center;
+}
+.steps-column-center .step-body {
+    visibility: hidden;
+    width: 0;
+}
+.steps-column-center .step-body {
+    padding: 0;
+}
+.step-title {
+    padding-right: 10%;
+    font-size: 16px;
+    line-height: 38px;
+}
+.steps-vertical .step-title {
+    line-height: 24px;
+    padding-bottom: 8px;
+}
+.step-description {
+    margin-top: -10px;
+    font-size: 12px;
+    line-height: 22px;
+    font-weight: 400;
+    color: #000;
+    border:1px solid rgba(222,222,222,1);
+    border-radius:5px;
+    padding: 0 2px;
+}
+.steps-row-start .step-description {
+    margin-bottom: -5px;
+}
+.steps-center .step-title,
+.steps-center .step-description {
+    padding-right: 0;
+}
+.steps .step:last-child .step-line {
+    display: none;
+}
+.steps-row .step:last-child .step-title,
+.steps-row .step:last-child .step-description {
+    padding-right: 0;
+}
+.steps-column-start .step-title,
+.steps-column-start .step-description {
+    text-align: right;
+    margin-right: 10px;
+}
+.steps-column-end .step-description {
+    text-align: left;
+    margin-left: 10px;
+}
+/* .steps-column-start .step-description::before{
+    content:''; 
+    display:block; 
+    width:0; 
+    height:0; 
+    position:relative; 
+    top:10px; 
+    left:155px; 
+    border-left:9px solid #ccc; 
+    border-top:7px solid transparent; 
+    border-bottom:7px solid transparent;
+}
+.steps-column-start .step-description::after{
+    content:''; 
+    display:block; 
+    width:0; 
+    height:0; 
+    position:relative; 
+    top:-46px; 
+    left:154.5px; 
+    border-left:8px solid #fff; 
+    border-top:5px solid transparent; 
+    border-bottom:5px solid transparent;
+}
+.steps-column-end .step-description::before{
+    content:''; 
+    display:block; 
+    width:0; 
+    height:0; 
+    position:relative; 
+    top:10px; 
+    left:-19px; 
+    border-right:9px solid #ccc; 
+    border-top:7px solid transparent; 
+    border-bottom:7px solid transparent;
+}
+.steps-column-end .step-description::after{
+    content:''; 
+    display:block; 
+    width:0; 
+    height:0; 
+    position:relative; 
+    top:-46px; 
+    left:-18px;
+    border-right:8px solid #fff; 
+    border-top:5px solid transparent; 
+    border-bottom:5px solid transparent;
+} */
+
+
+.steps-vertical .steps-column:not(.steps-column-center) .step:last-child {
+    flex-basis: auto!important;
+    flex-shrink: 0;
+    flex-grow: 0;
+}
+.steps-vertical .steps-column-center .step:last-child {
+    flex-shrink: 0;
+    flex-grow: 0;
+}
+.step-default-class {
+    color: #999;
+    border-color: #999;
+}
+.step-finish-class {
+    color: #A51023;
+    border-color: #409eff;
+}
+.step-finish-line-bg {
+    background-color: #409eff;
+}
